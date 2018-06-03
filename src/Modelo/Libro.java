@@ -15,20 +15,39 @@ public class Libro {
     private int nro_paginas;
     private float precio_referencia;
     private String editorial;
+    private int IDeditorial;
     private int id_compra;
     private int id_venta;
     private String estado;
+    private int IDestado;
     private int anio_publicacion;
+    private int IDanio_publicacion;
     private String titulo;
+    private int IDtitulo;
     private String ISBN;
+    private int IDISBN;
     private int id_arriendo;
     private String utilidad;
+    private int IDutilidad;
     
     
     
 
     public Libro() {
     }
+
+    public Libro(String nro_serie, int nro_paginas, float precio_referencia, int IDeditorial, int IDestado, int IDanio_publicacion, int IDtitulo, int IDISBN, int IDutilidad) {
+        this.nro_serie = nro_serie;
+        this.nro_paginas = nro_paginas;
+        this.precio_referencia = precio_referencia;
+        this.IDeditorial = IDeditorial;
+        this.IDestado = IDestado;
+        this.IDanio_publicacion = IDanio_publicacion;
+        this.IDtitulo = IDtitulo;
+        this.IDISBN = IDISBN;
+        this.IDutilidad = IDutilidad;
+    }
+    
 
     public Libro(String nro_serie, int nro_paginas, float precio_referencia, String editorial, String estado, int anio_publicacion, String titulo, String ISBN, String utilidad) {
         this.nro_serie = nro_serie;
@@ -56,6 +75,55 @@ public class Libro {
         this.id_arriendo = id_arriendo;
         this.utilidad = utilidad;
     }
+
+    public int getIDeditorial() {
+        return IDeditorial;
+    }
+
+    public void setIDeditorial(int IDeditorial) {
+        this.IDeditorial = IDeditorial;
+    }
+
+    public int getIDestado() {
+        return IDestado;
+    }
+
+    public void setIDestado(int IDestado) {
+        this.IDestado = IDestado;
+    }
+
+    public int getIDanio_publicacion() {
+        return IDanio_publicacion;
+    }
+
+    public void setIDanio_publicacion(int IDanio_publicacion) {
+        this.IDanio_publicacion = IDanio_publicacion;
+    }
+
+    public int getIDtitulo() {
+        return IDtitulo;
+    }
+
+    public void setIDtitulo(int IDtitulo) {
+        this.IDtitulo = IDtitulo;
+    }
+
+    public int getIDISBN() {
+        return IDISBN;
+    }
+
+    public void setIDISBN(int IDISBN) {
+        this.IDISBN = IDISBN;
+    }
+
+    public int getIDutilidad() {
+        return IDutilidad;
+    }
+
+    public void setIDutilidad(int IDutilidad) {
+        this.IDutilidad = IDutilidad;
+    }
+    
 
     public String getNro_serie() {
         return nro_serie;

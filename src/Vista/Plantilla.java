@@ -66,7 +66,7 @@ public class Plantilla extends javax.swing.JPanel {
         wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/wallpapers/wallpaper.jpg"))); // NOI18N
         wallpaper.setPreferredSize(Principal.dimension);
         add(wallpaper);
-        wallpaper.setBounds(0, 0, 1382, 1562);
+        wallpaper.setBounds(0, 0, 2558, 1562);
     }// </editor-fold>//GEN-END:initComponents
 
 

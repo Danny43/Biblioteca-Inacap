@@ -5,7 +5,7 @@
  */
 /*
     Si vas a modificar el desing vas a tener que volver a llamar al metodo
-"llenarTablita()" en el "initComponents()" para pasarle el modelo de tabla al 
+"llenarTablita()" en el "initComponents()" para pasarle el modelo de tabla al
 constructor de JTable y renombrar manualmente los columnsName todo desde Atom.
 */
 
@@ -16,6 +16,7 @@ import Controlador.ControladorAutor;
 import Controlador.ControladorEditorial;
 import Controlador.ControladorEstado;
 import Controlador.ControladorISBN;
+import Controlador.ControladorLibro;
 import Controlador.ControladorTitulo;
 import Controlador.ControladorUtilidad;
 import Modelo.AnioPublicacion;
@@ -23,9 +24,11 @@ import Modelo.Autor;
 import Modelo.Editorial;
 import Modelo.Estado;
 import Modelo.ISBN;
+import Modelo.Libro;
 import Modelo.TituloLibro;
 import Modelo.Utilidad;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -58,6 +61,8 @@ public class RegistrarLibro extends javax.swing.JPanel {
 
     private ControladorAutor cAu = new ControladorAutor();
     ArrayList<Autor> listadoAu = cAu.listado();
+    
+    private ControladorLibro cL = new ControladorLibro();
 
     public RegistrarLibro() {
         initComponents();
@@ -118,6 +123,13 @@ public class RegistrarLibro extends javax.swing.JPanel {
     private void btnVolverSelected(){
         btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/volver-selected.png")));
     }
+
+    private void btnRegistrarLibroDefault(){
+        btnRegistrarLibro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/registrar-default.png")));
+    }
+    private void btnRegistrarLibroSelected(){
+        btnRegistrarLibro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/registrar-selected.png")));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -152,6 +164,7 @@ public class RegistrarLibro extends javax.swing.JPanel {
         txtPrecio = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaAutores = new javax.swing.JTable();
+        btnRegistrarLibro = new javax.swing.JLabel();
         btnVolver = new javax.swing.JLabel();
         contenedorSecundario = new javax.swing.JLabel();
         contenedorPrincipal = new javax.swing.JLabel();
@@ -239,7 +252,8 @@ public class RegistrarLibro extends javax.swing.JPanel {
         jPanel1.add(txtPrecio);
         txtPrecio.setBounds(200, 480, 150, 24);
 
-        tablaAutores.setModel(new javax.swing.table.DefaultTableModel(llenarTablita(),
+        tablaAutores.setModel(new javax.swing.table.DefaultTableModel(
+            llenarTablita(),
             new String [] {
                 "Nombres", "Apellido Paterno", "Apellido Materno", "Seleccione"
             }
@@ -256,6 +270,21 @@ public class RegistrarLibro extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(200, 130, 390, 80);
+
+        btnRegistrarLibro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/registrar-default.png"))); // NOI18N
+        btnRegistrarLibro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegistrarLibroMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnRegistrarLibroMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnRegistrarLibroMouseExited(evt);
+            }
+        });
+        jPanel1.add(btnRegistrarLibro);
+        btnRegistrarLibro.setBounds(470, 450, 170, 50);
 
         add(jPanel1);
         jPanel1.setBounds(540, 90, 660, 540);
@@ -302,6 +331,51 @@ public class RegistrarLibro extends javax.swing.JPanel {
         Principal.principal.MenuPrinicipal();
     }//GEN-LAST:event_btnVolverMouseClicked
 
+    private void btnRegistrarLibroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarLibroMouseEntered
+        btnRegistrarLibroSelected();
+    }//GEN-LAST:event_btnRegistrarLibroMouseEntered
+
+    private void btnRegistrarLibroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarLibroMouseExited
+        btnRegistrarLibroDefault();
+
+    }//GEN-LAST:event_btnRegistrarLibroMouseExited
+
+    private void btnRegistrarLibroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarLibroMouseClicked
+       String nroSerie = txtNroSerie.getText();
+       int precioReferencia = Integer.parseInt(txtPrecio.getText());
+       int nroPaginas = Integer.parseInt(txtNroPaginas.getText());
+       int anioPublicacion = boxAnio.getSelectedIndex() +1;
+       int editorial = boxEditorial.getSelectedIndex() + 1;
+       int estado = boxEstado.getSelectedIndex() + 1;
+       int ISBN = boxISBN.getSelectedIndex() + 1;
+       int titulo = boxTitulo.getSelectedIndex() + 1;
+       int utilidad = boxUtilidad.getSelectedIndex()+ 1;
+       int autor = 0;
+       for (int i = 0; i < tablaAutores.getRowCount(); i++){
+           if(true == (boolean) tablaAutores.getModel().getValueAt(i,3)){
+               String Nombres = (String) tablaAutores.getModel().getValueAt(i, 0);
+               String apPaterno = (String) tablaAutores.getModel().getValueAt(i, 1);
+               String apMaterno = (String) tablaAutores.getModel().getValueAt(i, 2);
+               for (int j = 0 ; j < listadoAu.size(); j++){
+                   if(Nombres == listadoAu.get(j).getNombres() & apPaterno == listadoAu.get(j).getApPaterno() & apMaterno == listadoAu.get(j).getApMaterno()){
+                       autor = listadoAu.get(j).getId();
+                   }
+               }
+           }
+       }
+       try{
+           Libro libro = new Libro(nroSerie, nroPaginas, precioReferencia, editorial, estado, anioPublicacion, titulo, ISBN, utilidad);
+       cL.crear(libro);
+       JOptionPane.showMessageDialog(null, "Se ha Agregado correctamente");
+           System.out.println("ID Editorial: " + editorial);
+       }
+       catch(Exception e){
+           JOptionPane.showMessageDialog(null," Ha ocurrido un error: " + e.getMessage());
+       }
+       
+       
+    }//GEN-LAST:event_btnRegistrarLibroMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Autores;
@@ -311,6 +385,7 @@ public class RegistrarLibro extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> boxISBN;
     private javax.swing.JComboBox<String> boxTitulo;
     private javax.swing.JComboBox<String> boxUtilidad;
+    private javax.swing.JLabel btnRegistrarLibro;
     private javax.swing.JLabel btnVolver;
     private javax.swing.JLabel contenedorPrincipal;
     private javax.swing.JLabel contenedorSecundario;

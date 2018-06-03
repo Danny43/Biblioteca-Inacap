@@ -17,6 +17,14 @@ public class Editorial {
     public Editorial() {
     }
 
+    
+    
+    public Editorial(String nombre_editorial) {
+        this.nombre_editorial = nombre_editorial;
+    }
+    
+    
+
     public Editorial(int id, String nombre_editorial) {
         this.id = id;
         this.nombre_editorial = nombre_editorial;

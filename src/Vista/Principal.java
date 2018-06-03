@@ -50,6 +50,25 @@ public class Principal extends javax.swing.JFrame {
         this.setContentPane(new RegistrarLibro());
         this.pack();
     }
+    public void registrarEditorial(){
+        this.setContentPane(new RegistrarEditorial());
+        this.pack();
+    }
+    
+    public void registrarCategoria(){
+        this.setContentPane(new RegistrarCategoria());
+        this.pack();
+    }
+    
+    public void registrarEstado(){
+        this.setContentPane(new RegistrarEstado());
+        this.pack();
+    }
+    
+    public void registrarIdioma(){
+        this.setContentPane(new RegistrarIdioma());
+        this.pack();
+    }
     
     private void Dimensiones(){
         double Height = this.dimension.getHeight();
