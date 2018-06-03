@@ -26,7 +26,7 @@ public class ControladorLibro {
             Connection conn = obj.conectar();
             Statement stmt = conn.createStatement();
             String sql = "Insert into Libro(nro_serie, nro_paginas, precio_referencia, Editorial_idEditorial, estado_libro_idestado_libro, anio_publicacion_idanio_publicacion, titulo_libro_idtitulo_libro, ISBN_idISBN, utilidad_idUtilidad)"
-                    + "   values('" + obL.getNro_serie() + "', '" + obL.getNro_paginas() + "', '" + obL.getPrecio_referencia() + "', '" + obL.getEditorial() + "', '" + obL.getEstado() + "', '" + obL.getAnio_publicacion() + "', '" + obL.getTitulo() + "', '" + obL.getISBN() + "', '" + obL.getUtilidad() + "')";
+                    + "   values('" + obL.getNro_serie() + "', '" + obL.getNro_paginas() + "', '" + obL.getPrecio_referencia() + "', '" + obL.getIDeditorial() + "', '" + obL.getIDestado() + "', '" + obL.getIDanio_publicacion() + "', '" + obL.getIDtitulo() + "', '" + obL.getIDISBN() + "', '" + obL.getIDutilidad() + "')";
             int op = stmt.executeUpdate(sql);
 
             if (op > 0) {

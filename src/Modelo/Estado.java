@@ -21,6 +21,11 @@ public class Estado {
         this.estado = estado;
     }
 
+    public Estado(String estado) {
+        this.estado = estado;
+    }
+    
+    
     public int getId() {
         return id;
     }

@@ -6,6 +6,8 @@
 package Controlador;
 
 import Modelo.Editorial;
+import com.sun.org.apache.bcel.internal.classfile.Code;
+import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -46,6 +48,28 @@ public class ControladorEditorial {
         
         
         return lista;
+    }
+  
+    public boolean crear(Editorial ed){
+        boolean correcto = false;
+        
+        try{
+            Conexion obj = new Conexion();
+            Connection conn = obj.conectar();
+            Statement stmt = conn.createStatement();
+            String sql = "insert into editorial(nombre_editorial) values('"+ ed.getNombre_editorial()+"')";
+            int op = stmt.executeUpdate(sql);
+
+            if(op > 0){
+                correcto = true;
+            }
+        }catch(Exception e){
+            System.out.println("Controlador Editorial (crear): " + e.getMessage());
+        }
+        
+        
+        return correcto;
+        
     }
     
 }

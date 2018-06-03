@@ -17,6 +17,11 @@ public class Idioma {
     public Idioma() {
     }
 
+    public Idioma(String idioma) {
+        this.idioma = idioma;
+    }
+    
+
     public Idioma(int id, String idioma) {
         this.id = id;
         this.idioma = idioma;

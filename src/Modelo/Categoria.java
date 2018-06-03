@@ -17,6 +17,12 @@ public class Categoria {
     public Categoria() {
     }
 
+    public Categoria(String Categoria) {
+        this.Categoria = Categoria;
+    }
+    
+    
+
     public Categoria(int id, String Categoria) {
         this.id = id;
         this.Categoria = Categoria;

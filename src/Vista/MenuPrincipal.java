@@ -1319,6 +1319,22 @@ public class MenuPrincipal extends javax.swing.JPanel {
             btnRegistrarDetalleDefault();
             Principal.principal.registrarAutor();
         }
+        if(mantenerEditorial){
+            btnRegistrarDetalleDefault();
+            Principal.principal.registrarEditorial();
+        }
+        if(mantenerCategoria){
+            btnRegistrarDetalleDefault();
+            Principal.principal.registrarCategoria();
+        }
+        if(mantenerIdioma){
+            btnRegistrarDetalleDefault();
+            Principal.principal.registrarIdioma();
+        }
+        if(mantenerEstado){
+            btnRegistrarDetalleDefault();
+            Principal.principal.registrarEstado();
+        }
     }//GEN-LAST:event_btnRegistrarDetalleMouseClicked
 
     private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
