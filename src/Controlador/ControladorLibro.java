@@ -88,8 +88,8 @@ public class ControladorLibro {
             Conexion obj = new Conexion();
             Connection conn = obj.conectar();
             Statement stmt = conn.createStatement();
-            String sql = "select nro_serie as Numero_de_Serie, nro_paginas as Numero_de_Paginas, precio_referencia as Precio_de_Referencia, Editorial.nombre_editorial as Editorial, estado_libro.estado as Estado, anio_publicacion.anio as Año_de_Publicacion, titulo_libro.titulo as Titulo, ISBN.ISBN as ISBN, utilidad.utilidad as Utilidad from libro\n"
-                    + "   inner join Editorial on Editorial.idEditorial = Editorial_idEditorial\n"
+            String sql = "select nro_serie as Numero_de_Serie, nro_paginas as Numero_de_Paginas, precio_referencia as Precio_de_Referencia, editorial.nombre_editorial as Editorial, estado_libro.estado as Estado, anio_publicacion.anio as Año_de_Publicacion, titulo_libro.titulo as Titulo, ISBN.ISBN as ISBN, utilidad.utilidad as Utilidad from libro\n"
+                    + "   inner join editorial on editorial.idEditorial = Editorial_idEditorial\n"
                     + "   inner join estado_libro on estado_libro.idestado_libro = estado_libro_idestado_libro\n"
                     + "   inner join anio_publicacion on anio_publicacion.idanio_publicacion = anio_publicacion_idanio_publicacion\n"
                     + "   inner join titulo_libro on titulo_libro.idtitulo_libro = titulo_libro_idtitulo_libro\n"
