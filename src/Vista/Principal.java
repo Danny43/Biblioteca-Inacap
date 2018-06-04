@@ -26,7 +26,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        MenuPrinicipal();
+        IniciarSesion();
         
     }
     
@@ -34,6 +34,10 @@ public class Principal extends javax.swing.JFrame {
         this.setContentPane(menuPrincipal);
         this.pack();
         
+    }
+    public void IniciarSesion(){
+        this.setContentPane(new IniciarSesion());
+        this.pack();
     }
     
     public void BuscarLibro(){
