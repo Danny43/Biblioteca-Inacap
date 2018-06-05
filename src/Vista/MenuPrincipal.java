@@ -48,7 +48,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
         panelVisible(false);
         panelDetalleVisible(false);
         panel3Visible(false);
-        
+       
 
     }
     

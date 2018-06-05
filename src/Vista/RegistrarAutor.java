@@ -7,7 +7,9 @@ package Vista;
 
 import Controlador.ControladorAutor;
 import Modelo.Autor;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,6 +27,7 @@ public class RegistrarAutor extends javax.swing.JPanel {
         this.setPreferredSize(Principal.dimension);
         this.setMinimumSize(Principal.dimension);
         this.setMaximumSize(Principal.dimension);
+        llenarTablita();
 
     }
 
@@ -32,6 +35,22 @@ public class RegistrarAutor extends javax.swing.JPanel {
         txtNombres.setText("");
         txtApPaterno.setText("");
         txtApMaterno.setText("");
+    }
+    
+    private void llenarTablita(){
+        ControladorAutor cA = new ControladorAutor();
+        ArrayList<Autor> listadoAu = cA.listado();
+        
+        Object model[][] = new Object[listadoAu.size()][3];
+        
+        for (int i = 0; i < listadoAu.size(); i++){
+            model[i][0] = listadoAu.get(i).getNombres();
+            model[i][1] = listadoAu.get(i).getApPaterno();
+            model[i][2] = listadoAu.get(i).getApMaterno();
+        }
+        
+        tablaAutores.setModel(new DefaultTableModel(model, new String[] {"Nombres", "Apellido Paterno","Apellido Materno"}));
+        
     }
 
     private void btnVolverDefault(){
@@ -57,6 +76,8 @@ public class RegistrarAutor extends javax.swing.JPanel {
         txtApPaterno = new javax.swing.JTextField();
         txtApMaterno = new javax.swing.JTextField();
         btnRegistrar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaAutores = new javax.swing.JTable();
         btnVolver = new javax.swing.JLabel();
         contenedorSecundario = new javax.swing.JLabel();
         contenedorPrincipal = new javax.swing.JLabel();
@@ -73,23 +94,23 @@ public class RegistrarAutor extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nombres:");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(140, 70, 60, 16);
+        jLabel1.setBounds(170, 230, 80, 15);
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Apellido Paterno:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(100, 110, 100, 16);
+        jLabel2.setBounds(120, 270, 130, 15);
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Apellido Materno:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(100, 150, 100, 16);
+        jLabel3.setBounds(120, 310, 130, 15);
         jPanel1.add(txtNombres);
-        txtNombres.setBounds(200, 70, 170, 24);
+        txtNombres.setBounds(250, 230, 170, 23);
         jPanel1.add(txtApPaterno);
-        txtApPaterno.setBounds(200, 110, 170, 24);
+        txtApPaterno.setBounds(250, 270, 170, 23);
         jPanel1.add(txtApMaterno);
-        txtApMaterno.setBounds(200, 150, 170, 24);
+        txtApMaterno.setBounds(250, 310, 170, 23);
 
         btnRegistrar.setText("Registrar");
         btnRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -98,7 +119,36 @@ public class RegistrarAutor extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnRegistrar);
-        btnRegistrar.setBounds(210, 210, 110, 32);
+        btnRegistrar.setBounds(260, 370, 110, 31);
+
+        tablaAutores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Nombres", "Apellido Paterno", "Apellido Materno"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tablaAutores);
+        if (tablaAutores.getColumnModel().getColumnCount() > 0) {
+            tablaAutores.getColumnModel().getColumn(0).setResizable(false);
+            tablaAutores.getColumnModel().getColumn(1).setResizable(false);
+            tablaAutores.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(70, 50, 550, 140);
 
         add(jPanel1);
         jPanel1.setBounds(540, 110, 660, 490);
@@ -173,6 +223,8 @@ public class RegistrarAutor extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tablaAutores;
     private javax.swing.JTextField txtApMaterno;
     private javax.swing.JTextField txtApPaterno;
     private javax.swing.JTextField txtNombres;
