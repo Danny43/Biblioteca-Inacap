@@ -80,7 +80,7 @@ public class RegistrarEstado extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Estado:");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(110, 200, 42, 16);
+        jLabel1.setBounds(110, 200, 54, 20);
 
         tablaEstados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,13 +92,24 @@ public class RegistrarEstado extends javax.swing.JPanel {
             new String [] {
                 "Estado"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tablaEstados);
+        if (tablaEstados.getColumnModel().getColumnCount() > 0) {
+            tablaEstados.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(110, 50, 453, 90);
         jPanel1.add(txtEstado);
-        txtEstado.setBounds(170, 200, 160, 24);
+        txtEstado.setBounds(170, 200, 160, 23);
 
         btnAgregar.setText("Agregar");
         btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -107,7 +118,7 @@ public class RegistrarEstado extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnAgregar);
-        btnAgregar.setBounds(360, 200, 76, 32);
+        btnAgregar.setBounds(360, 200, 87, 31);
 
         add(jPanel1);
         jPanel1.setBounds(540, 110, 660, 490);

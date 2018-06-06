@@ -77,7 +77,7 @@ public class RegistrarEditorial extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nombre:");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(100, 220, 50, 16);
+        jLabel1.setBounds(100, 220, 60, 20);
 
         tablaEditoriales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,8 +105,14 @@ public class RegistrarEditorial extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(120, 50, 453, 100);
+
+        txtNombreEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreEditorialActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtNombreEditorial);
-        txtNombreEditorial.setBounds(160, 220, 170, 24);
+        txtNombreEditorial.setBounds(170, 220, 170, 23);
 
         btnAgregar.setText("Agregar");
         btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -115,7 +121,7 @@ public class RegistrarEditorial extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnAgregar);
-        btnAgregar.setBounds(350, 220, 77, 32);
+        btnAgregar.setBounds(350, 220, 100, 31);
 
         add(jPanel1);
         jPanel1.setBounds(540, 110, 660, 490);
@@ -177,6 +183,10 @@ public class RegistrarEditorial extends javax.swing.JPanel {
     private void btnVolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseExited
         btnVolverDefault();
     }//GEN-LAST:event_btnVolverMouseExited
+
+    private void txtNombreEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreEditorialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreEditorialActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

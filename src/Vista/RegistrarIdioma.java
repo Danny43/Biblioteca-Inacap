@@ -84,15 +84,27 @@ public class RegistrarIdioma extends javax.swing.JPanel {
             new String [] {
                 "Idioma"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(tablaIdioma);
+        if (tablaIdioma.getColumnModel().getColumnCount() > 0) {
+            tablaIdioma.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(100, 50, 453, 90);
+        jScrollPane2.setBounds(100, 50, 453, 160);
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Idioma:");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(110, 200, 41, 16);
+        jLabel1.setBounds(120, 310, 60, 20);
 
         txtidioma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,7 +112,7 @@ public class RegistrarIdioma extends javax.swing.JPanel {
             }
         });
         jPanel1.add(txtidioma);
-        txtidioma.setBounds(160, 200, 140, 24);
+        txtidioma.setBounds(180, 310, 140, 23);
 
         btnAgregar.setText("Agregar");
         btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -114,7 +126,7 @@ public class RegistrarIdioma extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnAgregar);
-        btnAgregar.setBounds(310, 200, 76, 32);
+        btnAgregar.setBounds(330, 310, 87, 31);
 
         add(jPanel1);
         jPanel1.setBounds(540, 110, 660, 490);

@@ -85,7 +85,7 @@ public class RegistrarCategoria extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Categoria:");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(90, 210, 60, 16);
+        jLabel1.setBounds(80, 210, 80, 15);
 
         tablaCategorias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -97,8 +97,19 @@ public class RegistrarCategoria extends javax.swing.JPanel {
             new String [] {
                 "Categoria"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tablaCategorias);
+        if (tablaCategorias.getColumnModel().getColumnCount() > 0) {
+            tablaCategorias.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(100, 50, 453, 110);
@@ -109,7 +120,7 @@ public class RegistrarCategoria extends javax.swing.JPanel {
             }
         });
         jPanel1.add(txtCategoria);
-        txtCategoria.setBounds(160, 210, 170, 24);
+        txtCategoria.setBounds(160, 210, 170, 23);
 
         btnAgregar.setText("Agregar");
         btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -118,7 +129,7 @@ public class RegistrarCategoria extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnAgregar);
-        btnAgregar.setBounds(340, 210, 76, 32);
+        btnAgregar.setBounds(340, 210, 87, 31);
 
         add(jPanel1);
         jPanel1.setBounds(540, 110, 660, 490);
