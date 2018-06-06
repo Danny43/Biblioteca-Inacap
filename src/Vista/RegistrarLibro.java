@@ -181,81 +181,86 @@ public class RegistrarLibro extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Numero de Serie:");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(100, 40, 100, 16);
+        jLabel1.setBounds(70, 40, 130, 20);
         jPanel1.add(txtNroSerie);
-        txtNroSerie.setBounds(210, 40, 150, 24);
+        txtNroSerie.setBounds(210, 40, 150, 23);
 
         jPanel1.add(boxTitulo);
-        boxTitulo.setBounds(200, 90, 260, 26);
+        boxTitulo.setBounds(200, 90, 260, 25);
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Título:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(150, 90, 40, 16);
+        jLabel2.setBounds(150, 90, 50, 20);
 
         Autores.setForeground(new java.awt.Color(255, 255, 255));
         Autores.setText("Autores:");
         jPanel1.add(Autores);
-        Autores.setBounds(140, 160, 48, 16);
+        Autores.setBounds(140, 160, 61, 15);
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Editorial:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(140, 240, 50, 16);
+        jLabel3.setBounds(130, 240, 70, 20);
 
         jPanel1.add(boxEditorial);
-        boxEditorial.setBounds(200, 240, 260, 26);
+        boxEditorial.setBounds(200, 240, 260, 25);
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Utilidad:");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(140, 280, 50, 16);
+        jLabel4.setBounds(130, 280, 70, 20);
 
         jPanel1.add(boxUtilidad);
-        boxUtilidad.setBounds(200, 280, 260, 26);
+        boxUtilidad.setBounds(200, 280, 260, 25);
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Estado:");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(140, 320, 50, 16);
+        jLabel5.setBounds(140, 320, 60, 15);
 
         jPanel1.add(boxEstado);
-        boxEstado.setBounds(200, 320, 260, 26);
+        boxEstado.setBounds(200, 320, 260, 25);
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Año de Publicacion:");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(70, 360, 120, 16);
+        jLabel6.setBounds(50, 360, 140, 20);
 
         jPanel1.add(boxAnio);
-        boxAnio.setBounds(200, 360, 260, 26);
+        boxAnio.setBounds(200, 360, 260, 25);
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("ISBN:");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(150, 400, 41, 16);
+        jLabel7.setBounds(150, 400, 41, 20);
 
         jPanel1.add(boxISBN);
-        boxISBN.setBounds(200, 400, 260, 26);
+        boxISBN.setBounds(200, 400, 260, 25);
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Numero de Páginas:");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(70, 440, 120, 16);
+        jLabel8.setBounds(50, 440, 150, 20);
         jPanel1.add(txtNroPaginas);
-        txtNroPaginas.setBounds(200, 440, 150, 24);
+        txtNroPaginas.setBounds(200, 440, 150, 23);
 
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Precio de Referencia:");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(60, 480, 130, 16);
+        jLabel9.setBounds(40, 480, 160, 20);
         jPanel1.add(txtPrecio);
-        txtPrecio.setBounds(200, 480, 150, 24);
+        txtPrecio.setBounds(200, 480, 150, 23);
 
         tablaAutores.setModel(new javax.swing.table.DefaultTableModel(
-            llenarTablita(),
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
             new String [] {
-                "Nombres", "Apellido Paterno", "Apellido Materno", "Seleccione"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ) {
             Class[] types = new Class [] {
