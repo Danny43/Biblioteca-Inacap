@@ -1342,6 +1342,10 @@ public class MenuPrincipal extends javax.swing.JPanel {
             btnRegistrarDefault();
             Principal.principal.registrarLibro();
         }
+        if(mantenerDistribuidor){
+            btnRegistrarDefault();
+            Principal.principal.registrarDistribuidor();
+        }
     }//GEN-LAST:event_btnRegistrarMouseClicked
 
 

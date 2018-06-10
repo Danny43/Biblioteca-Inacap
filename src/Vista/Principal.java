@@ -74,6 +74,11 @@ public class Principal extends javax.swing.JFrame {
         this.pack();
     }
     
+    public void registrarDistribuidor(){
+        this.setContentPane(new RegistrarDistribuidor());
+        this.pack();
+    }
+    
     private void Dimensiones(){
         double Height = this.dimension.getHeight();
         double Width = this.dimension.getWidth();

@@ -31,6 +31,15 @@ public class Distribuidor {
         this.AnioAsociacion = AnioAsociacion;
     }
 
+    public Distribuidor(String rut, String nombre, String direccion, String telefono, Date AnioAsociacion) {
+        this.rut = rut;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.AnioAsociacion = AnioAsociacion;
+    }
+    
+
     public int getId() {
         return id;
     }
