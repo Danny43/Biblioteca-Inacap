@@ -7,11 +7,6 @@ package Vista;
 
 import Controlador.ControladorDistribuidor;
 import Modelo.Distribuidor;
-import java.awt.Color;
-import java.text.DateFormat;
-import java.text.FieldPosition;
-import java.text.ParsePosition;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,26 +28,33 @@ public class RegistrarDistribuidor extends javax.swing.JPanel {
 
     }
 
-    private void configurarCalendario() {
 
-    }
-    
-    private void limpiar(){
+
+    private void limpiar() {
         txtDireccion.setText("");
         txtNombreEmpresa.setText("");
         txtRut.setText("");
         txtTelefono.setText("");
-        
+
     }
-    private void buscaExistencia(){
-        
-        
-        if(new ControladorDistribuidor().existe(txtRut.getText())){
+    
+    private void btnVolverDefault(){
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/volver-default.png")));
+    }
+    private void btnVolverSelected(){
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/volver-selected.png")));
+    }
+
+    private boolean existeRut = false;
+
+    private void buscaExistencia() {
+
+        if (new ControladorDistribuidor().existe(txtRut.getText())) {
             errorRut.setVisible(true);
-        }
-        else{
+            existeRut = true;
+        } else {
             errorRut.setVisible(false);
-            System.out.println("Apretaste algo");
+            existeRut = false;
         }
     }
 
@@ -79,6 +81,7 @@ public class RegistrarDistribuidor extends javax.swing.JPanel {
         calendario = new com.toedter.calendar.JDateChooser();
         errorRut = new javax.swing.JLabel();
         contenedorSecundario = new javax.swing.JLabel();
+        btnVolver = new javax.swing.JLabel();
         contenedorPrincipal = new javax.swing.JLabel();
         wallpaper = new javax.swing.JLabel();
 
@@ -138,6 +141,11 @@ public class RegistrarDistribuidor extends javax.swing.JPanel {
         txtTelefono.setBounds(200, 180, 190, 23);
 
         btnRegistrar.setText("Registrar");
+        btnRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegistrarMouseClicked(evt);
+            }
+        });
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
@@ -160,6 +168,21 @@ public class RegistrarDistribuidor extends javax.swing.JPanel {
         add(contenedorSecundario);
         contenedorSecundario.setBounds(480, 60, 770, 590);
 
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/volver-default.png"))); // NOI18N
+        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVolverMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVolverMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVolverMouseEntered(evt);
+            }
+        });
+        add(btnVolver);
+        btnVolver.setBounds(110, 570, 170, 50);
+
         contenedorPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/contenedores/contenedor-main.png"))); // NOI18N
         add(contenedorPrincipal);
         contenedorPrincipal.setBounds(40, 70, 300, 580);
@@ -171,14 +194,20 @@ public class RegistrarDistribuidor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        Distribuidor d = new Distribuidor(txtRut.getText(), txtNombreEmpresa.getText(), txtDireccion.getText(), txtTelefono.getText(), new java.sql.Date(calendario.getDate().getYear(), calendario.getDate().getMonth(), calendario.getDate().getDay()));
-        if (new ControladorDistribuidor().registrar(d)) {
-            JOptionPane.showMessageDialog(null, "Se ha registrado correctamente");
-            limpiar();
+
+        if (!existeRut) {
+            Distribuidor d = new Distribuidor(txtRut.getText(), txtNombreEmpresa.getText(), txtDireccion.getText(), txtTelefono.getText(), new java.sql.Date(calendario.getDate().getYear(), calendario.getDate().getMonth(), calendario.getDate().getDay()));
+            if (new ControladorDistribuidor().registrar(d)) {
+                JOptionPane.showMessageDialog(null, "Se ha registrado correctamente");
+                limpiar();
+            } else {
+                JOptionPane.showMessageDialog(null, "algo salio mal");
+            }
+
         } else {
-            JOptionPane.showMessageDialog(null, "algo salio mal");
+            JOptionPane.showMessageDialog(null, "éste rut ya se encuentra registrado!");
         }
-        
+
 
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -187,17 +216,34 @@ public class RegistrarDistribuidor extends javax.swing.JPanel {
     }//GEN-LAST:event_txtRutActionPerformed
 
     private void txtRutKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutKeyTyped
-      //  buscaExistencia();
-        
+
     }//GEN-LAST:event_txtRutKeyTyped
 
     private void txtRutKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutKeyReleased
         buscaExistencia();
     }//GEN-LAST:event_txtRutKeyReleased
 
+    private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistrarMouseClicked
+
+    private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
+        btnVolverDefault();
+        Principal.principal.MenuPrinicipal();
+    }//GEN-LAST:event_btnVolverMouseClicked
+
+    private void btnVolverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseEntered
+        btnVolverSelected();
+    }//GEN-LAST:event_btnVolverMouseEntered
+
+    private void btnVolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseExited
+        btnVolverDefault();
+    }//GEN-LAST:event_btnVolverMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JLabel btnVolver;
     private com.toedter.calendar.JDateChooser calendario;
     private javax.swing.JLabel contenedorPrincipal;
     private javax.swing.JLabel contenedorSecundario;

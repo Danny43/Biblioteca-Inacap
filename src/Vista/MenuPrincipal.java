@@ -502,6 +502,9 @@ public class MenuPrincipal extends javax.swing.JPanel {
 
         btnMostrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/mostrarTodo-default.png"))); // NOI18N
         btnMostrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMostrarMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnMostrarMouseEntered(evt);
             }
@@ -666,6 +669,11 @@ public class MenuPrincipal extends javax.swing.JPanel {
 
         wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/wallpapers/wallpaper.jpg"))); // NOI18N
         wallpaper.setPreferredSize(Principal.dimension);
+        wallpaper.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                wallpaperMouseClicked(evt);
+            }
+        });
         add(wallpaper);
         wallpaper.setBounds(0, 0, 2558, 1562);
     }// </editor-fold>//GEN-END:initComponents
@@ -1346,7 +1354,30 @@ public class MenuPrincipal extends javax.swing.JPanel {
             btnRegistrarDefault();
             Principal.principal.registrarDistribuidor();
         }
+        if(mantenerFactura){
+            btnRegistrarDefault();
+            Principal.principal.registrarFactura();
+        }
+        if(mantenerMetodoPago){
+            btnRegistrarDefault();
+            Principal.principal.registrarMetodoPago();
+        }
+        if(mantenerCompra){
+            btnRegistrarDefault();
+            Principal.principal.TipoTransaccion();
+        }
     }//GEN-LAST:event_btnRegistrarMouseClicked
+
+    private void wallpaperMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wallpaperMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_wallpaperMouseClicked
+
+    private void btnMostrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarMouseClicked
+        if(mantenerLibros){
+            btnMostrarDefault();
+            Principal.principal.MostratTodoLibros();
+        }
+    }//GEN-LAST:event_btnMostrarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
