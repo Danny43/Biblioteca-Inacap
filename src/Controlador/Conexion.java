@@ -12,7 +12,7 @@ public class Conexion {
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-            return DriverManager.getConnection("jdbc:mysql://localhost/Biblioteca", "root", "root");
+            return DriverManager.getConnection("jdbc:mysql://localhost/bibliotecainacap", "root", "root");
         }
         catch (Exception except)
         {
