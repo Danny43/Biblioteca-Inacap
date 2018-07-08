@@ -17,6 +17,12 @@ public class MetodoPago {
     public MetodoPago() {
     }
 
+    public MetodoPago(String metodo) {
+        this.metodo = metodo;
+    }
+    
+    
+
     public MetodoPago(int id, String metodo) {
         this.id = id;
         this.metodo = metodo;

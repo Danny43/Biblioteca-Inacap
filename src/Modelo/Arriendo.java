@@ -5,7 +5,7 @@
  */
 package Modelo;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -15,9 +15,9 @@ public class Arriendo {
     
     private int id;
     private float costoTotal;
-    private Date fechaArriendo;
-    private Date fechaDevolucion;
-    private Date fechaEntregaReal;
+    private String fechaArriendo;
+    private String fechaDevolucion;
+    private String fechaEntregaReal;
     private int diasRetraso;
     private float multa;
     private float costoArriendo;
@@ -27,7 +27,7 @@ public class Arriendo {
     public Arriendo() {
     }
 
-    public Arriendo(int id, Date fechaArriendo, Date fechaDevolucion, float costoArriendo, int idCliente, int idTrabajador) {
+    public Arriendo(int id, String fechaArriendo, String fechaDevolucion, float costoArriendo, int idCliente, int idTrabajador) {
         this.id = id;
         this.fechaArriendo = fechaArriendo;
         this.fechaDevolucion = fechaDevolucion;
@@ -36,7 +36,7 @@ public class Arriendo {
         this.idTrabajador = idTrabajador;
     }
 
-    public Arriendo(int id, float costoTotal, Date fechaArriendo, Date fechaDevolucion, Date fechaEntregaReal, int diasRetraso, float multa, float costoArriendo, int idCliente, int idTrabajador) {
+    public Arriendo(int id, float costoTotal, String fechaArriendo, String fechaDevolucion, String fechaEntregaReal, int diasRetraso, float multa, float costoArriendo, int idCliente, int idTrabajador) {
         this.id = id;
         this.costoTotal = costoTotal;
         this.fechaArriendo = fechaArriendo;
@@ -65,27 +65,27 @@ public class Arriendo {
         this.costoTotal = costoTotal;
     }
 
-    public Date getFechaArriendo() {
+    public String getFechaArriendo() {
         return fechaArriendo;
     }
 
-    public void setFechaArriendo(Date fechaArriendo) {
+    public void setFechaArriendo(String fechaArriendo) {
         this.fechaArriendo = fechaArriendo;
     }
 
-    public Date getFechaDevolucion() {
+    public String getFechaDevolucion() {
         return fechaDevolucion;
     }
 
-    public void setFechaDevolucion(Date fechaDevolucion) {
+    public void setFechaDevolucion(String fechaDevolucion) {
         this.fechaDevolucion = fechaDevolucion;
     }
 
-    public Date getFechaEntregaReal() {
+    public String getFechaEntregaReal() {
         return fechaEntregaReal;
     }
 
-    public void setFechaEntregaReal(Date fechaEntregaReal) {
+    public void setFechaEntregaReal(String fechaEntregaReal) {
         this.fechaEntregaReal = fechaEntregaReal;
     }
 

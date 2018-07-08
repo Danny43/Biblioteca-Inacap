@@ -355,7 +355,7 @@ public class RegistrarLibro extends javax.swing.JPanel {
        int ISBN = boxISBN.getSelectedIndex() + 1;
        int titulo = boxTitulo.getSelectedIndex() + 1;
        int utilidad = boxUtilidad.getSelectedIndex()+ 1;
-       int autor = 0;
+       /*int autor = 0;
        for (int i = 0; i < tablaAutores.getRowCount(); i++){
            if(true == (boolean) tablaAutores.getModel().getValueAt(i,3)){
                String Nombres = (String) tablaAutores.getModel().getValueAt(i, 0);
@@ -367,7 +367,7 @@ public class RegistrarLibro extends javax.swing.JPanel {
                    }
                }
            }
-       }
+       }*/
        try{
            Libro libro = new Libro(nroSerie, nroPaginas, precioReferencia, editorial, estado, anioPublicacion, titulo, ISBN, utilidad);
        cL.crear(libro);

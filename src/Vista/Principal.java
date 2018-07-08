@@ -40,8 +40,34 @@ public class Principal extends javax.swing.JFrame {
         this.pack();
     }
     
+    public void MostratTodoLibros(){
+        this.setContentPane(new MostrarTodoLibro());
+        this.pack();
+    }
+    
     public void BuscarLibro(){
         this.setContentPane(new BuscarLibro());
+        this.pack();
+    }
+    
+    public void TipoTransaccion(){
+        this.setContentPane(new TipoTransaccion());
+        this.pack();
+    }
+    
+    public void Arriendo(){
+        this.setContentPane(new RegistrarArriendo());
+        this.pack();
+    }
+    
+    public void Venta(){
+        this.setContentPane(new Venta());{
+        this.pack();
+    }
+    }
+    
+    public void registrarMetodoPago(){
+        this.setContentPane(new RegistrarMetodoPago());
         this.pack();
     }
     
@@ -76,6 +102,10 @@ public class Principal extends javax.swing.JFrame {
     
     public void registrarDistribuidor(){
         this.setContentPane(new RegistrarDistribuidor());
+        this.pack();
+    }
+    public void registrarFactura(){
+        this.setContentPane(new RegistrarFactura());
         this.pack();
     }
     

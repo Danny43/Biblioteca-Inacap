@@ -141,6 +141,14 @@ public class RegistrarFactura extends javax.swing.JPanel {
         txtPrecio.setText("");
         txtTitulo.setText("");
     }
+    
+    private void btnVolverDefault(){
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/volver-default.png")));
+    }
+    
+    private void btnVolverSelected(){
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/volver-selected.png")));
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -174,6 +182,7 @@ public class RegistrarFactura extends javax.swing.JPanel {
         boxMetodoPago = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         txtFolio = new javax.swing.JLabel();
+        btnVolver = new javax.swing.JLabel();
         contenedorSecundario = new javax.swing.JLabel();
         contenedorPrincipal = new javax.swing.JLabel();
         wallpaper = new javax.swing.JLabel();
@@ -341,6 +350,21 @@ public class RegistrarFactura extends javax.swing.JPanel {
         add(jPanel1);
         jPanel1.setBounds(500, 80, 720, 520);
 
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/volver-default.png"))); // NOI18N
+        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVolverMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVolverMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVolverMouseExited(evt);
+            }
+        });
+        add(btnVolver);
+        btnVolver.setBounds(100, 540, 170, 60);
+
         contenedorSecundario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/contenedores/contenedor-secundario.png"))); // NOI18N
         add(contenedorSecundario);
         contenedorSecundario.setBounds(480, 60, 770, 590);
@@ -457,6 +481,19 @@ public class RegistrarFactura extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnFacturaActionPerformed
 
+    private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
+        btnVolverDefault();
+        Principal.principal.MenuPrinicipal();
+    }//GEN-LAST:event_btnVolverMouseClicked
+
+    private void btnVolverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseEntered
+        btnVolverSelected();
+    }//GEN-LAST:event_btnVolverMouseEntered
+
+    private void btnVolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseExited
+        btnVolverDefault();
+    }//GEN-LAST:event_btnVolverMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxDistribuidor;
@@ -464,6 +501,7 @@ public class RegistrarFactura extends javax.swing.JPanel {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscarLibro;
     private javax.swing.JButton btnFactura;
+    private javax.swing.JLabel btnVolver;
     private javax.swing.JLabel contenedorPrincipal;
     private javax.swing.JLabel contenedorSecundario;
     private javax.swing.JLabel jLabel1;
