@@ -49,7 +49,7 @@ public class RegistrarFactura extends javax.swing.JPanel {
 
     private ControladorDistribuidor cD = new ControladorDistribuidor();
     private ArrayList<Distribuidor> listaDistribuidores = cD.listado();
-    
+
     private ControladorMetodoPago cM = new ControladorMetodoPago();
     private ArrayList<MetodoPago> listaMetodoPago = cM.listado();
 
@@ -112,9 +112,9 @@ public class RegistrarFactura extends javax.swing.JPanel {
         }
 
     }
-    
-    private void cargarBoxMetodoPago(){
-        for (int i = 0; i < listaMetodoPago.size(); i ++){
+
+    private void cargarBoxMetodoPago() {
+        for (int i = 0; i < listaMetodoPago.size(); i++) {
             boxMetodoPago.addItem(listaMetodoPago.get(i).getMetodo());
         }
     }
@@ -141,12 +141,12 @@ public class RegistrarFactura extends javax.swing.JPanel {
         txtPrecio.setText("");
         txtTitulo.setText("");
     }
-    
-    private void btnVolverDefault(){
+
+    private void btnVolverDefault() {
         btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/volver-default.png")));
     }
-    
-    private void btnVolverSelected(){
+
+    private void btnVolverSelected() {
         btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/volver-selected.png")));
     }
 
@@ -257,10 +257,7 @@ public class RegistrarFactura extends javax.swing.JPanel {
 
         tablaListado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Nro. Serie", "Título", "Editorial", "Precio"
@@ -404,7 +401,7 @@ public class RegistrarFactura extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "Este producto ya se encuentra en la lista");
                 }
             }
-            if (new ControladorLibro().asociadoACompra(txtNroSerieLibro.getText())){
+            if (new ControladorLibro().asociadoACompra(txtNroSerieLibro.getText())) {
                 asociado = true;
                 JOptionPane.showMessageDialog(null, "Este libro ya tiene una compra asociada");
             }
@@ -431,54 +428,64 @@ public class RegistrarFactura extends javax.swing.JPanel {
     private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
         int folio = new ControladorFactura().asignarFolio();
         float precioNeto = Neto;
-        float precioTotal = Total;     
+        float precioTotal = Total;
         int idDistribuidor = 0;
-        for (int i = 0; i < listaDistribuidores.size(); i++){
-            if(listaDistribuidores.get(i).getNombre().equals(boxDistribuidor.getSelectedItem())){
+        for (int i = 0; i < listaDistribuidores.size(); i++) {
+            if (listaDistribuidores.get(i).getNombre().equals(boxDistribuidor.getSelectedItem())) {
                 idDistribuidor = listaDistribuidores.get(i).getId();
             }
         }
         int metodoPago = 0;
-        for(int i = 0; i <listaMetodoPago.size(); i++){
-            if(listaMetodoPago.get(i).getMetodo().equals(boxMetodoPago.getSelectedItem())){
+        for (int i = 0; i < listaMetodoPago.size(); i++) {
+            if (listaMetodoPago.get(i).getMetodo().equals(boxMetodoPago.getSelectedItem())) {
                 metodoPago = listaMetodoPago.get(i).getId();
             }
         }
-        
+
         Factura factura = new Factura(folio, precioNeto, precioTotal, metodoPago, IVA);
-        
-        if(new ControladorFactura().agregar(factura)){
-            JOptionPane.showMessageDialog(null, "se ha creado la factura correctamente");
-        }else{
-            JOptionPane.showMessageDialog(null, "ha ocurrido un error al agregar la factura");
-        }
-        
-        int idCompra = new ControladorCompra().obtenerID();
-        
-        Compra compra = new Compra(idCompra , idDistribuidor, folio);
-        
-        if(new ControladorCompra().agregar(compra)){
-            JOptionPane.showMessageDialog(null, "se ha agregado la compra correctamente");
-        }else{
-            JOptionPane.showMessageDialog(null, "ha ocurrido un error al agregar la compra");
-        }
-        
-        for(int i = 0; i < Lista.size(); i++){
-            if(new ControladorLibro().agregarIdCompra(Lista.get(i), compra)){
-                System.out.println("agregar idCompra: "+ compra.getId()+ " a Libro: "+ Lista.get(i).getNro_serie()+ " CORRECTO");
-            }else{
-                System.out.println("\"agregar idCompra: \"+ compra.getId()+ \" a Libro: \"+ Lista.get(i).getNro_serie()+ \" INCORRECTO\"");
-                JOptionPane.showMessageDialog(null, "Algo salio mal");
+
+        System.out.println("filas: " + tablaListado.getRowCount());
+
+        if (tablaListado.getRowCount() > 0) {
+            if (new ControladorFactura().agregar(factura)) {
+                JOptionPane.showMessageDialog(null, "se ha creado la factura correctamente");
+
+                int idCompra = new ControladorCompra().obtenerID();
+
+                Compra compra = new Compra(idCompra, idDistribuidor, folio);
+
+                if (new ControladorCompra().agregar(compra)) {
+                    JOptionPane.showMessageDialog(null, "se ha agregado la compra correctamente");
+
+                    cleanText();
+                    txtIVA.setText("");
+                    txtNroSerieLibro.setText("");
+                    txtNeto.setText("");
+                    txtTotal.setText("");
+                    Lista = new ArrayList<>();
+                    llenarTabla();
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "ha ocurrido un error al agregar la compra");
+                }
+
+                for (int i = 0; i < Lista.size(); i++) {
+                    if (new ControladorLibro().agregarIdCompra(Lista.get(i), compra)) {
+                        System.out.println("agregar idCompra: " + compra.getId() + " a Libro: " + Lista.get(i).getNro_serie() + " CORRECTO");
+                    } else {
+                        System.out.println("\"agregar idCompra: \"+ compra.getId()+ \" a Libro: \"+ Lista.get(i).getNro_serie()+ \" INCORRECTO\"");
+                        JOptionPane.showMessageDialog(null, "Algo salio mal");
+                    }
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "ha ocurrido un error al agregar la factura, revisa si completaste todos los campos");
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "La lista está vacia");
         }
-        
-        cleanText();
-        txtIVA.setText("");
-        txtNroSerieLibro.setText("");
-        txtNeto.setText("");
-        txtTotal.setText("");
-        Lista = new ArrayList<>();
-        
+
+
     }//GEN-LAST:event_btnFacturaActionPerformed
 
     private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
