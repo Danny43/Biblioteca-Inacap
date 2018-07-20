@@ -9,6 +9,7 @@ import Controlador.ControladorAnio;
 import Controlador.ControladorEditorial;
 import Controlador.ControladorEstado;
 import Controlador.ControladorISBN;
+import Controlador.ControladorIdioma;
 import Controlador.ControladorLibro;
 import Controlador.ControladorTitulo;
 import Controlador.ControladorUtilidad;
@@ -17,6 +18,7 @@ import Modelo.Autor;
 import Modelo.Editorial;
 import Modelo.Estado;
 import Modelo.ISBN;
+import Modelo.Idioma;
 import Modelo.Libro;
 import Modelo.TituloLibro;
 import Modelo.Utilidad;
@@ -47,7 +49,12 @@ public class BuscarLibro extends javax.swing.JPanel {
     private ControladorISBN cIS = new ControladorISBN();
     ArrayList<ISBN> listaIS = cIS.listado();
 
+    private ControladorIdioma cID = new ControladorIdioma();
+    ArrayList<Idioma> listaIdioma = cID.listado();
+
     private ControladorLibro cL = new ControladorLibro();
+
+    private Libro l = null;
 
     /**
      * Creates new form MenuPrincipal
@@ -57,6 +64,8 @@ public class BuscarLibro extends javax.swing.JPanel {
         this.setPreferredSize(Principal.dimension);
         this.setMinimumSize(Principal.dimension);
         this.setMaximumSize(Principal.dimension);
+        btnCancelar.setEnabled(false);
+        btnGuardar.setEnabled(false);
         campos(false);
 
     }
@@ -70,26 +79,30 @@ public class BuscarLibro extends javax.swing.JPanel {
         boxUtilidad.setEnabled(op);
         txtNroPaginas.setEnabled(op);
         txtPrecio.setEnabled(op);
-        txtAutores.setEnabled(op);
+        boxIdioma.setEnabled(op);
     }
-    
-    private void limpiarCampos(){
+
+    private void limpiarCampos() {
         boxAnio.setSelectedIndex(-1);
         boxEditorial.setSelectedIndex(-1);
         boxEstado.setSelectedIndex(-1);
         boxISBN.setSelectedIndex(-1);
         boxTitulo.setSelectedIndex(-1);
         boxUtilidad.setSelectedIndex(-1);
+        boxIdioma.setSelectedIndex(-1);
         txtNroPaginas.setText("");
         txtPrecio.setText("");
-        txtAutores.setText("");
-        txtNroSerie.setText("");
+        // txtNroSerie.setText("");
     }
 
     private void llenarbox() {
 
         for (int i = 0; i < listaT.size(); i++) {
             boxTitulo.addItem(listaT.get(i).getTitulo());
+        }
+
+        for (int i = 0; i < listaIdioma.size(); i++) {
+            boxIdioma.addItem(listaIdioma.get(i).getIdioma());
         }
 
         for (int i = 0; i < listaE.size(); i++) {
@@ -113,13 +126,14 @@ public class BuscarLibro extends javax.swing.JPanel {
         }
     }
 
-    
-    private void btnVolverDefault(){
+    private void btnVolverDefault() {
         btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/volver-default.png")));
     }
-    private void btnVolverSelected(){
+
+    private void btnVolverSelected() {
         btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/volver-selected.png")));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -150,7 +164,11 @@ public class BuscarLibro extends javax.swing.JPanel {
         txtPrecio = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         Autores = new javax.swing.JLabel();
-        txtAutores = new javax.swing.JTextField();
+        btnEditar = new javax.swing.JButton();
+        boxIdioma = new javax.swing.JComboBox<>();
+        btnEliminar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
         btnVolver = new javax.swing.JLabel();
         contenedorSecundario = new javax.swing.JLabel();
         contenedorPrincipal = new javax.swing.JLabel();
@@ -182,7 +200,7 @@ public class BuscarLibro extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Editorial:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(140, 200, 50, 16);
+        jLabel3.setBounds(130, 200, 60, 16);
 
         jPanel1.add(boxEditorial);
         boxEditorial.setBounds(200, 200, 260, 26);
@@ -243,11 +261,48 @@ public class BuscarLibro extends javax.swing.JPanel {
         btnBuscar.setBounds(380, 60, 71, 32);
 
         Autores.setForeground(new java.awt.Color(255, 255, 255));
-        Autores.setText("Autores:");
+        Autores.setText("Idioma:");
         jPanel1.add(Autores);
-        Autores.setBounds(140, 160, 48, 16);
-        jPanel1.add(txtAutores);
-        txtAutores.setBounds(200, 160, 260, 24);
+        Autores.setBounds(140, 160, 41, 20);
+
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEditar);
+        btnEditar.setBounds(520, 210, 100, 50);
+
+        jPanel1.add(boxIdioma);
+        boxIdioma.setBounds(200, 160, 260, 26);
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminar);
+        btnEliminar.setBounds(580, 450, 76, 32);
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCancelar);
+        btnCancelar.setBounds(490, 450, 90, 32);
+
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGuardar);
+        btnGuardar.setBounds(410, 450, 77, 32);
 
         add(jPanel1);
         jPanel1.setBounds(540, 110, 660, 490);
@@ -282,17 +337,19 @@ public class BuscarLibro extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
-        Libro l = cL.buscar(Integer.parseInt(txtNroSerie.getText()));
+        l = cL.buscar(Integer.parseInt(txtNroSerie.getText()));
 
         if (l != null) {
+            limpiarCampos();
             llenarbox();
-
             for (int i = 0; i < boxEditorial.getItemCount(); i++) {
                 boxEditorial.setSelectedIndex(i);
                 if (String.valueOf(boxEditorial.getSelectedItem()).equals(l.getEditorial())) {
                     break;
                 }
             }
+
+            boxIdioma.setSelectedIndex(new ControladorIdioma().buscar(l.getNro_serie()) - 1);
 
             for (int i = 0; i < boxAnio.getItemCount(); i++) {
                 boxAnio.setSelectedIndex(i);
@@ -304,7 +361,7 @@ public class BuscarLibro extends javax.swing.JPanel {
             for (int i = 0; i < boxEstado.getItemCount(); i++) {
                 boxEstado.setSelectedIndex(i);
                 if (String.valueOf(boxEstado.getSelectedItem()).equals(l.getEstado())) {
-
+                    break;
                 }
             }
 
@@ -327,26 +384,8 @@ public class BuscarLibro extends javax.swing.JPanel {
                 }
             }
             txtNroPaginas.setText(String.valueOf(l.getNro_paginas()));
-            txtPrecio.setText("$" + String.valueOf(l.getPrecio_referencia()));
+            txtPrecio.setText( String.valueOf(l.getPrecio_referencia()));
 
-            ArrayList<Autor> listaAu = cT.buscarAutores(cT.buscarTitulo(l.getTitulo()));
-            for (int i = 0; i < listaAu.size(); i++) {
-                if (listaAu.get(i).getApMaterno() != null) {
-                    if (txtAutores.getText().equals("")) {
-                        txtAutores.setText(listaAu.get(i).getNombres() + " " + listaAu.get(i).getApPaterno() + " " + listaAu.get(i).getApMaterno());
-                    } else {
-                        txtAutores.setText(txtAutores.getText() + ", " + listaAu.get(i).getNombres() + " " + listaAu.get(i).getApPaterno() + " " + listaAu.get(i).getApMaterno());
-
-                    }
-                } else {
-                    if (txtAutores.getText().equals("")) {
-                        txtAutores.setText(listaAu.get(i).getNombres() + " " + listaAu.get(i).getApPaterno());
-                    } else {
-                        txtAutores.setText(txtAutores.getText() + ", " + listaAu.get(i).getNombres() + " " + listaAu.get(i).getApPaterno());
-
-                    }
-                }
-            }
         } else {
             JOptionPane.showMessageDialog(null, "No se ha encontrado ningún libro con este numero de serie");
         }
@@ -368,6 +407,68 @@ public class BuscarLibro extends javax.swing.JPanel {
         Principal.principal.MenuPrinicipal();
     }//GEN-LAST:event_btnVolverMouseClicked
 
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+
+        if (l != null) {
+            campos(true);
+            btnGuardar.setEnabled(true);
+            btnCancelar.setEnabled(true);
+            btnEliminar.setEnabled(false);
+            txtNroSerie.setEnabled(false);
+        }else{
+            JOptionPane.showMessageDialog(null, "Antes debes buscar un Libro");
+        }
+
+
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if (l == null) {
+            JOptionPane.showMessageDialog(null, "Debes Buscar un libro si quieres Eliminar");
+        } else {
+            int op = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar el libro con Numero de Serie: " + l.getNro_serie());
+            if (op == 0) {
+                if (new ControladorLibro().eliminar(l.getNro_serie())) {
+                    limpiarCampos();
+                    txtNroSerie.setText("");
+                    JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente");
+                } else {
+                    JOptionPane.showMessageDialog(null, "ha ocurrido un error al intentar eliminar");
+                }
+
+            }
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        btnBuscarMouseClicked(null);
+        campos(false);
+        txtNroSerie.setEnabled(true);
+        btnGuardar.setEnabled(false);
+        btnEliminar.setEnabled(true);
+        btnCancelar.setEnabled(false);
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        l.setIDISBN(boxISBN.getSelectedIndex() + 1);
+        l.setIDanio_publicacion(boxAnio.getSelectedIndex() + 1);
+        l.setIDeditorial(boxEditorial.getSelectedIndex() + 1);
+        l.setIDestado(boxEstado.getSelectedIndex() + 1);
+        l.setIDtitulo(boxTitulo.getSelectedIndex() + 1);
+        l.setIDutilidad(boxUtilidad.getSelectedIndex() + 1);
+        l.setNro_paginas(Integer.parseInt(txtNroPaginas.getText()));
+        l.setPrecio_referencia(Float.parseFloat(txtPrecio.getText()));  
+        
+       
+        if(new ControladorLibro().modificar(l, boxIdioma.getSelectedIndex() + 1)){
+            JOptionPane.showMessageDialog(null, "Se ha Modificado Correctamente");
+            btnCancelarActionPerformed(null);
+        }else{
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error al tratar de modificar");
+        }
+        
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Autores;
@@ -375,9 +476,14 @@ public class BuscarLibro extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> boxEditorial;
     private javax.swing.JComboBox<String> boxEstado;
     private javax.swing.JComboBox<String> boxISBN;
+    private javax.swing.JComboBox<String> boxIdioma;
     private javax.swing.JComboBox<String> boxTitulo;
     private javax.swing.JComboBox<String> boxUtilidad;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JLabel btnVolver;
     private javax.swing.JLabel contenedorPrincipal;
     private javax.swing.JLabel contenedorSecundario;
@@ -391,7 +497,6 @@ public class BuscarLibro extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtAutores;
     private javax.swing.JTextField txtNroPaginas;
     private javax.swing.JTextField txtNroSerie;
     private javax.swing.JTextField txtPrecio;

@@ -7,9 +7,12 @@ package Vista;
 
 import Controlador.ControladorAutor;
 import Controlador.ControladorTitulo;
+import Controlador.ControladorTituloAutor;
 import Modelo.Autor;
+import Modelo.TituloAutor;
 import Modelo.TituloLibro;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -29,7 +32,7 @@ public class RegistrarTitulo extends javax.swing.JPanel {
         this.setPreferredSize(Principal.dimension);
         this.setMinimumSize(Principal.dimension);
         this.setMaximumSize(Principal.dimension);
-
+        llenarTablitaTitulos();
     }
 
     private Object[][] llenarTablita() {
@@ -45,18 +48,26 @@ public class RegistrarTitulo extends javax.swing.JPanel {
         return tabla;
 
     }
-    
+
+    private void btnVolverDefault(){
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/volver-default.png")));
+    }
+
+    private void btnVolverSelected(){
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/volver-selected.png")));
+    }
+
     private void llenarTablitaTitulos(){
         ArrayList<TituloLibro> lista = new ControladorTitulo().listado();
-        
+
         Object model[][] = new Object[lista.size()][1];
-        
+
         for (int i = 0; i < lista.size(); i++) {
             model[i][0] = lista.get(i).getTitulo();
         }
-        
+
         tablaTitulos.setModel(new DefaultTableModel(model, new String[] {"Título"}));
-        
+
     }
 
     /**
@@ -77,6 +88,7 @@ public class RegistrarTitulo extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaTitulos = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
+        btnVolver = new javax.swing.JLabel();
         contenedorSecundario = new javax.swing.JLabel();
         contenedorPrincipal = new javax.swing.JLabel();
         wallpaper = new javax.swing.JLabel();
@@ -96,15 +108,10 @@ public class RegistrarTitulo extends javax.swing.JPanel {
         jLabel2.setBounds(130, 260, 34, 20);
 
         tablaAutores.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
+        llenarTablita(),
+        new String [] {
+            "Nombres", "Apellido Paterno ", "Apellido Materno", "Selecciona"
+        }
         ) {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
@@ -163,6 +170,21 @@ public class RegistrarTitulo extends javax.swing.JPanel {
         add(jPanel1);
         jPanel1.setBounds(540, 110, 660, 490);
 
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/volver-default.png"))); // NOI18N
+        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVolverMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVolverMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVolverMouseExited(evt);
+            }
+        });
+        add(btnVolver);
+        btnVolver.setBounds(100, 540, 170, 60);
+
         contenedorSecundario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/contenedores/contenedor-secundario.png"))); // NOI18N
         add(contenedorSecundario);
         contenedorSecundario.setBounds(480, 60, 770, 590);
@@ -180,27 +202,43 @@ public class RegistrarTitulo extends javax.swing.JPanel {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         if(new ControladorTitulo().agregarTitulo(new TituloLibro(txtTitulo.getText()))){
             ArrayList<Autor> autoresTitulo = new ArrayList<>();
-            
+
             for (int i = 0; i < tablaAutores.getRowCount(); i++) {
                 if((boolean)tablaAutores.getValueAt(i, 3)){
                     autoresTitulo.add(listadoAu.get(i));
                 }
             }
-            
+
             for (int i = 0; i < autoresTitulo.size(); i++) {
-                if(true){
-                    
+                if(new ControladorTituloAutor().crear(new TituloAutor(new ControladorTitulo().buscarID(txtTitulo.getText()), autoresTitulo.get(i).getId()))){
+                    JOptionPane.showMessageDialog(null, "Se ha asociado correctamente con: " + autoresTitulo.get(i).getNombres() +" "+ autoresTitulo.get(i).getApPaterno());
+                }else{
+                    JOptionPane.showMessageDialog(null, "ha ocurrido un error!");
                 }
-                
+
             }
-            
+            Principal.principal.registrarTitulo();
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
+        btnVolverDefault();
+        Principal.principal.MenuPrinicipal();
+    }//GEN-LAST:event_btnVolverMouseClicked
+
+    private void btnVolverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseEntered
+        btnVolverSelected();
+    }//GEN-LAST:event_btnVolverMouseEntered
+
+    private void btnVolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseExited
+        btnVolverDefault();
+    }//GEN-LAST:event_btnVolverMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Autores;
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JLabel btnVolver;
     private javax.swing.JLabel contenedorPrincipal;
     private javax.swing.JLabel contenedorSecundario;
     private javax.swing.JLabel jLabel2;
