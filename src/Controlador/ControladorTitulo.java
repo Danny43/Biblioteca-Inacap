@@ -108,4 +108,54 @@ public class ControladorTitulo {
         return buscado;
     }
     
+    public boolean agregarTitulo(TituloLibro t){
+        boolean correcto = false;
+        
+        try{
+            
+            Conexion obj = new Conexion();
+            Connection conn = obj.conectar();
+            Statement stmt = conn.createStatement();
+            String sql ="insert into titulo_libro(titulo) values('"+t.getTitulo()+"')";
+            int op = stmt.executeUpdate(sql);
+            
+            if(op > 0){
+                correcto = true;
+            }
+            
+            stmt.close();
+            conn.close();
+            
+        }catch(Exception e){
+            System.out.println("Controlador Titulo (agregarTitulo): " + e.getMessage());
+        }
+        
+        return correcto;
+    }
+    
+    public int buscarID(String titulo){
+        int ID = 0;
+        
+        try{
+        
+            Conexion obj = new Conexion();
+            Connection conn = obj.conectar();
+            Statement stmt = conn.createStatement();
+            String sql = "select idtitulo_libro from titulo_libro where titulo = '"+titulo+"' ";
+            ResultSet datos = stmt.executeQuery(sql);
+            
+            if(datos.next()){
+                ID = datos.getInt(1);
+            }
+            
+           
+            
+        }catch(Exception e){
+            System.out.println("Controlador Factura (asigarFolio): " + e.getMessage());
+        }
+        
+        
+        return  ID;
+    }
+    
 }

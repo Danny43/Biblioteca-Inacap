@@ -17,6 +17,12 @@ public class TituloLibro {
     public TituloLibro() {
     }
 
+    public TituloLibro(String titulo) {
+        this.titulo = titulo;
+    }
+    
+    
+
     public TituloLibro(int id, String titulo) {
         this.id = id;
         this.titulo = titulo;

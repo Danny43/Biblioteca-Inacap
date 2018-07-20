@@ -7,6 +7,7 @@ package Controlador;
 
 import Modelo.Editorial;
 import Modelo.Idioma;
+import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -47,6 +48,32 @@ public class ControladorIdioma {
         
         return lista;
     }
+    
+    
+    public int buscar(String nroserie){
+        int id = 0;
+        
+        try{
+            Conexion obj = new Conexion();
+            Connection conn = obj.conectar();
+            Statement stmt = conn.createStatement();
+            String sql = "select idioma_ididioma from idioma_has_libro where libro_nro_serie = '"+nroserie+"'";
+            ResultSet datos  = stmt.executeQuery(sql);
+            if(datos.next()){
+                id = datos.getInt(1);
+            }
+            
+            conn.close();
+            stmt.close();
+            
+        }catch(Exception e){
+            System.out.println("Controlador Idioma (buscar): " + e.getMessage());
+        }
+        
+        
+        return id;
+    }
+    
     
     public boolean crear(Idioma i){
         boolean correcto = false;

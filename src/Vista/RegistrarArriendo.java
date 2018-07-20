@@ -163,7 +163,7 @@ public class RegistrarArriendo extends javax.swing.JPanel {
         setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(66, 66, 66));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Libro", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Felix Titling", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registrar Arriendo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Felix Titling", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel1.setLayout(null);
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -442,7 +442,7 @@ public class RegistrarArriendo extends javax.swing.JPanel {
                         }
 
                     }
-
+                    Principal.principal.Arriendo();
                 } else {
                     JOptionPane.showMessageDialog(null, "error al registrar el arriendo");
                 }
@@ -450,10 +450,7 @@ public class RegistrarArriendo extends javax.swing.JPanel {
 
         }
 
-        id = new ControladorArriendo().asignarId();
-        labelIdArriendo.setText(String.valueOf(id));
-        listaSeries = new ArrayList<>();
-        boxNroSerie.removeAllItems();
+        
     }//GEN-LAST:event_btnConfirmarMouseClicked
 
 

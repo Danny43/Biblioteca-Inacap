@@ -17,6 +17,37 @@ import java.util.ArrayList;
  * @author daniel
  */
 public class ControladorDistribuidor {
+    
+    public Distribuidor buscar(String rutBuscar){
+        Distribuidor d = null;
+        
+        try{
+            Conexion obj = new Conexion();
+            Connection conn = obj.conectar();
+            Statement stmt = conn.createStatement();
+            String sql = "select * from distribuidor where rut = '"+rutBuscar+"' ";
+            ResultSet datos = stmt.executeQuery(sql);
+            
+            if(datos.next()){
+                
+                int id = datos.getInt(1);
+                String rut = datos.getString(2);
+                String nombre = datos.getString(3);
+                String direccion = datos.getString(4);
+                String telefono = datos.getString(5);
+                Date AnioAsociacion = datos.getDate(6);
+                
+                d = new Distribuidor(id, rut, nombre, direccion, telefono, AnioAsociacion);
+                
+            }
+            
+            
+        }catch(Exception e){
+            System.out.println("Controlador Distribuidor (buscar): " + e.getMessage());
+        }
+        
+        return d;
+    }
 
     public boolean registrar(Distribuidor d) {
         boolean correcto = false;
@@ -26,7 +57,7 @@ public class ControladorDistribuidor {
             Conexion obj = new Conexion();
             Connection conn = obj.conectar();
             Statement stmt = conn.createStatement();
-            String sql = "insert into distribuidor(rut, nombre_empresa, direccion, telefono, anio_de_asociacion) values('" + d.getRut() + "', '" + d.getNombre() + "', '" + d.getDireccion() + "', '" + d.getTelefono() + "', '" + d.getAnioAsociacion().getYear() + '-' + d.getAnioAsociacion().getMonth() + '-' + d.getAnioAsociacion().getDay() + "')";
+            String sql = "insert into distribuidor(rut, nombre_empresa, direccion, telefono, anio_de_asociacion) values('" + d.getRut() + "', '" + d.getNombre() + "', '" + d.getDireccion() + "', '" + d.getTelefono() + "', '" + d.getAnioAsociacion().getYear() + '-' + d.getAnioAsociacion().getMonth() + '-' + d.getAnioAsociacion().getDate()+ "')";
             int op = stmt.executeUpdate(sql);
 
             if (op > 0) {

@@ -38,6 +38,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
     private boolean mantenerCategoria = false;
     private boolean mantenerIdioma = false;
     private boolean mantenerEstado = false;
+    private boolean mantenerTitulo = false;
 
     public MenuPrincipal() {
         initComponents();
@@ -48,10 +49,8 @@ public class MenuPrincipal extends javax.swing.JPanel {
         panelVisible(false);
         panelDetalleVisible(false);
         panel3Visible(false);
-       
 
     }
-    
 
     private void selectores(boolean visi) {
         selectorCompra.setVisible(visi);
@@ -65,21 +64,24 @@ public class MenuPrincipal extends javax.swing.JPanel {
         iconoFactura.setVisible(visi);
         iconoMetodoPago.setVisible(visi);
         iconoCompra.setVisible(visi);
+        selectorTitulo.setVisible(visi);
         selectorAutor.setVisible(visi);
         selectorEditorial.setVisible(visi);
         selectorDetalles.setVisible(visi);
         selectorCategoria.setVisible(visi);
         selectorIdioma.setVisible(visi);
         selectorEstado.setVisible(visi);
+        iconoTitulo.setVisible(visi);
         iconoAutor.setVisible(visi);
         iconoEditorial.setVisible(visi);
         iconoCategoria.setVisible(visi);
         iconoIdioma.setVisible(visi);
         iconoEstado.setVisible(visi);
-        
+
     }
-    
-    private void selectoresDetalle(boolean visi){
+
+    private void selectoresDetalle(boolean visi) {
+        selectorTitulo.setVisible(visi);
         selectorAutor.setVisible(visi);
         selectorEditorial.setVisible(visi);
         selectorCategoria.setVisible(visi);
@@ -91,33 +93,35 @@ public class MenuPrincipal extends javax.swing.JPanel {
         contenedorSecundario.setVisible(visible);
         btnRegistrar.setVisible(visible);
         btnBuscar.setVisible(visible);
-        btnMostrar.setVisible(visible);       
+        btnMostrar.setVisible(visible);
     }
-    
-    
-    private void panelDetalleVisible(boolean visi){
+
+    private void panelDetalleVisible(boolean visi) {
         contenedorSecundarioDetalle.setVisible(visi);
+        btnTitulo.setVisible(visi);
         btnAutor.setVisible(visi);
         btnEditorial.setVisible(visi);
         btnCategoria.setVisible(visi);
         btnIdioma.setVisible(visi);
         btnEstado.setVisible(visi);
     }
-    
-    private void panel3Visible(boolean visible){
+
+    private void panel3Visible(boolean visible) {
         contenedor3.setVisible(visible);
         btnRegistrarDetalle.setVisible(visible);
         btnBuscarDetalle.setVisible(visible);
         btnMostrarDetalle.setVisible(visible);
     }
-    
-    private void reinicioDetalle(){
+
+    private void reinicioDetalle() {
         mantenerAutor = false;
         mantenerEditorial = false;
         mantenerCategoria = false;
         mantenerIdioma = false;
         mantenerEstado = false;
         selectoresDetalle(false);
+        btnTituloDefault();
+        iconoTitulo.setVisible(false);
         btnAutorDefault();
         iconoAutor.setVisible(false);
         btnEditorialDefault();
@@ -141,7 +145,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
     }
 
     private void btnLibrosSelected() {
-        btnLibros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/libros-selected.png")));     
+        btnLibros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/libros-selected.png")));
     }
 
     private void btnDistribuidoresDefault() {
@@ -183,87 +187,108 @@ public class MenuPrincipal extends javax.swing.JPanel {
     private void btnCompraSelected() {
         btnCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/compra-selected.png")));
     }
-    
-    private void btnRegistrarDefault(){
+
+    private void btnRegistrarDefault() {
         btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/registrar-default.png")));
     }
-    private void btnRegistrarSelected(){
+
+    private void btnRegistrarSelected() {
         btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/registrar-selected.png")));
     }
-    
-    private void btnBuscarDefault(){
+
+    private void btnBuscarDefault() {
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/buscar-default.png")));
     }
-    private void btnBuscarSelected(){
+
+    private void btnBuscarSelected() {
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/buscar-selected.png")));
     }
-    
-    private void btnMostrarDefault(){
+
+    private void btnMostrarDefault() {
         btnMostrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/mostrarTodo-default.png")));
     }
-    private void btnMostrarSelected(){
+
+    private void btnMostrarSelected() {
         btnMostrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/mostrarTodo-selected.png")));
     }
-    
-    private void btnAutorDefault(){
+
+    private void btnAutorDefault() {
         btnAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/autor-default.png")));
     }
-    private void btnAutorSelected(){
+
+    private void btnAutorSelected() {
         btnAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/autor-selected.png")));
     }
-    
-    private void btnEditorialDefault(){
+
+    private void btnEditorialDefault() {
         btnEditorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/editorial-default.png")));
     }
-    private void btnEditorialSelected(){
+
+    private void btnEditorialSelected() {
         btnEditorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/editorial-selected.png")));
     }
 
-    private void btnCategoriaDefault(){
+    private void btnCategoriaDefault() {
         btnCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/categoria-default.png")));
     }
-    private void btnCategoriaSelected(){
+
+    private void btnCategoriaSelected() {
         btnCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/categoria-selected.png")));
     }
-    
-    private void btnIdiomaDefault(){
+
+    private void btnIdiomaDefault() {
         btnIdioma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/idioma-default.png")));
     }
-    private void btnIdiomaSelected(){
+
+    private void btnIdiomaSelected() {
         btnIdioma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/idioma-selected.png")));
     }
-    
-    private void btnEstadoDefault(){
+
+    private void btnEstadoDefault() {
         btnEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/estado-default.png")));
     }
-    private void btnEstadoSelected(){
+
+    private void btnEstadoSelected() {
         btnEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/estado-selected.png")));
     }
-    
-    private void btnRegistrarDetalleDefault(){
+
+    private void btnRegistrarDetalleDefault() {
         btnRegistrarDetalle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/registrar-default.png")));
     }
-    private void btnRegistrarDetalleSelected(){
+
+    private void btnRegistrarDetalleSelected() {
         btnRegistrarDetalle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/registrar-selected.png")));
     }
-    
-    private void btnBuscarDetalleDefault(){
+
+    private void btnBuscarDetalleDefault() {
         btnBuscarDetalle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/buscar-default.png")));
     }
-    private void btnBuscarDetalleSelected(){
+
+    private void btnBuscarDetalleSelected() {
         btnBuscarDetalle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/buscar-selected.png")));
     }
-    
-    private void btnMostrarDetalleDefault(){
+
+    private void btnMostrarDetalleDefault() {
         btnMostrarDetalle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/mostrarTodo-default.png")));
     }
-    private void btnMostrarDetalleSelected(){
+
+    private void btnTituloDefault() {
+        btnTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/titulo-default.png")));
+    }
+
+    private void btnTituloSelected() {
+        btnTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/titulo-selected.png")));
+    }
+
+    private void btnMostrarDetalleSelected() {
         btnMostrarDetalle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/mostrarTodo-selected.png")));
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        iconoTitulo = new javax.swing.JLabel();
         iconoEstado = new javax.swing.JLabel();
         iconoIdioma = new javax.swing.JLabel();
         iconoCategoria = new javax.swing.JLabel();
@@ -273,6 +298,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
         btnBuscarDetalle = new javax.swing.JLabel();
         btnRegistrarDetalle = new javax.swing.JLabel();
         contenedor3 = new javax.swing.JLabel();
+        selectorTitulo = new javax.swing.JLabel();
         selectorEstado = new javax.swing.JLabel();
         selectorIdioma = new javax.swing.JLabel();
         selectorCategoria = new javax.swing.JLabel();
@@ -282,6 +308,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
         btnIdioma = new javax.swing.JLabel();
         btnCategoria = new javax.swing.JLabel();
         btnEditorial = new javax.swing.JLabel();
+        btnTitulo = new javax.swing.JLabel();
         btnAutor = new javax.swing.JLabel();
         contenedorSecundarioDetalle = new javax.swing.JLabel();
         iconoCompra = new javax.swing.JLabel();
@@ -310,6 +337,10 @@ public class MenuPrincipal extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(1382, 744));
         setLayout(null);
+
+        iconoTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/contenedores/icono-titulo.png"))); // NOI18N
+        add(iconoTitulo);
+        iconoTitulo.setBounds(1000, 190, 260, 270);
 
         iconoEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/contenedores/done.png"))); // NOI18N
         add(iconoEstado);
@@ -373,6 +404,11 @@ public class MenuPrincipal extends javax.swing.JPanel {
         contenedor3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/contenedores/contenedor3.png"))); // NOI18N
         add(contenedor3);
         contenedor3.setBounds(710, 120, 640, 470);
+
+        selectorTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/contenedores/right-black-arrow.png"))); // NOI18N
+        selectorTitulo.setToolTipText("");
+        add(selectorTitulo);
+        selectorTitulo.setBounds(500, 130, 24, 30);
 
         selectorEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/contenedores/right-black-arrow.png"))); // NOI18N
         selectorEstado.setToolTipText("");
@@ -458,6 +494,21 @@ public class MenuPrincipal extends javax.swing.JPanel {
         });
         add(btnEditorial);
         btnEditorial.setBounds(530, 260, 170, 50);
+
+        btnTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/titulo-default.png"))); // NOI18N
+        btnTitulo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTituloMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnTituloMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnTituloMouseExited(evt);
+            }
+        });
+        add(btnTitulo);
+        btnTitulo.setBounds(530, 120, 170, 50);
 
         btnAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/botones/autor-default.png"))); // NOI18N
         btnAutor.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -767,7 +818,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCompraMouseEntered
 
     private void btnCompraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCompraMouseExited
-        if(!mantenerDistribuidor & !mantenerCompra & !mantenerDetalles & !mantenerFactura & !mantenerLibros & !mantenerMetodoPago){
+        if (!mantenerDistribuidor & !mantenerCompra & !mantenerDetalles & !mantenerFactura & !mantenerLibros & !mantenerMetodoPago) {
             btnCompraDefault();
             panelVisible(false);
             iconoCompra.setVisible(false);
@@ -843,7 +894,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
             iconoMetodoPago.setVisible(false);
 
             panelVisible(false);
-            
+
             mantenerDetalles = true;
             selectorDetalles.setVisible(true);
             btnDetallesSelected();
@@ -851,7 +902,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
         } else {
             mantenerDetalles = false;
             selectorDetalles.setVisible(false);
-            
+
         }
     }//GEN-LAST:event_btnDetallesMouseClicked
 
@@ -883,14 +934,13 @@ public class MenuPrincipal extends javax.swing.JPanel {
             selectorMetodoPago.setVisible(false);
             btnMetodoPagoDefault();
             iconoMetodoPago.setVisible(false);
-                        
 
             mantenerDistribuidor = true;
             selectorDistribuidor.setVisible(true);
             btnDistribuidoresSelected();
             iconoDistribuidor.setVisible(true);
             panelVisible(true);
-            
+
         } else {
             mantenerDistribuidor = false;
             selectorDistribuidor.setVisible(false);
@@ -1046,7 +1096,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRegistrarDetalleMouseEntered
 
     private void btnAutorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAutorMouseEntered
-        if(!mantenerEditorial & !mantenerCategoria & !mantenerIdioma & !mantenerEstado){
+        if (!mantenerEditorial & !mantenerCategoria & !mantenerIdioma & !mantenerEstado & !mantenerTitulo) {
             btnAutorSelected();
             panel3Visible(true);
             iconoAutor.setVisible(true);
@@ -1054,7 +1104,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAutorMouseEntered
 
     private void btnAutorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAutorMouseExited
-        if(!mantenerAutor & !mantenerCategoria & !mantenerEditorial & !mantenerIdioma & !mantenerEstado){
+        if (!mantenerAutor & !mantenerCategoria & !mantenerEditorial & !mantenerIdioma & !mantenerEstado & !mantenerTitulo) {
             btnAutorDefault();
             panel3Visible(false);
             iconoAutor.setVisible(false);
@@ -1062,7 +1112,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAutorMouseExited
 
     private void btnEditorialMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditorialMouseEntered
-        if(!mantenerAutor & !mantenerCategoria & !mantenerIdioma & !mantenerEstado){
+        if (!mantenerAutor & !mantenerCategoria & !mantenerIdioma & !mantenerEstado & !mantenerTitulo) {
             btnEditorialSelected();
             panel3Visible(true);
             iconoEditorial.setVisible(true);
@@ -1070,41 +1120,45 @@ public class MenuPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEditorialMouseEntered
 
     private void btnEditorialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditorialMouseClicked
-        if(!mantenerEditorial){
-            
+        if (!mantenerEditorial) {
+
+            mantenerTitulo = false;
+            btnTituloDefault();
+            iconoTitulo.setVisible(false);
+            selectorTitulo.setVisible(false);
+
             mantenerAutor = false;
             btnAutorDefault();
             iconoAutor.setVisible(false);
             selectorAutor.setVisible(false);
-            
+
             mantenerCategoria = false;
             btnCategoriaDefault();
             iconoCategoria.setVisible(false);
             selectorCategoria.setVisible(false);
-            
+
             mantenerIdioma = false;
             btnIdiomaDefault();
             iconoIdioma.setVisible(false);
             selectorIdioma.setVisible(false);
-            
+
             mantenerEstado = false;
             btnEstadoDefault();
             iconoEstado.setVisible(false);
             selectorEstado.setVisible(false);
-            
+
             mantenerEditorial = true;
             btnEditorialSelected();
             selectorEditorial.setVisible(true);
             iconoEditorial.setVisible(true);
-        }
-        else{
+        } else {
             mantenerEditorial = false;
             selectorEditorial.setVisible(false);
         }
     }//GEN-LAST:event_btnEditorialMouseClicked
 
     private void btnEditorialMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditorialMouseExited
-        if(!mantenerAutor & !mantenerCategoria & !mantenerEditorial & !mantenerIdioma & !mantenerEstado){
+        if (!mantenerAutor & !mantenerCategoria & !mantenerEditorial & !mantenerIdioma & !mantenerEstado & !mantenerTitulo) {
             btnEditorialDefault();
             panel3Visible(false);
             iconoEditorial.setVisible(false);
@@ -1112,7 +1166,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEditorialMouseExited
 
     private void btnCategoriaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoriaMouseEntered
-        if(!mantenerAutor & !mantenerEditorial & !mantenerIdioma & !mantenerEstado){
+        if (!mantenerAutor & !mantenerEditorial & !mantenerIdioma & !mantenerEstado & !mantenerTitulo) {
             btnCategoriaSelected();
             panel3Visible(true);
             iconoCategoria.setVisible(true);
@@ -1120,7 +1174,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCategoriaMouseEntered
 
     private void btnCategoriaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoriaMouseExited
-        if(!mantenerAutor & !mantenerCategoria & !mantenerEditorial & !mantenerIdioma & !mantenerEstado){
+        if (!mantenerAutor & !mantenerCategoria & !mantenerEditorial & !mantenerIdioma & !mantenerEstado & !mantenerTitulo) {
             btnCategoriaDefault();
             panel3Visible(false);
             iconoCategoria.setVisible(false);
@@ -1128,7 +1182,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCategoriaMouseExited
 
     private void btnIdiomaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIdiomaMouseEntered
-        if(!mantenerAutor & !mantenerEditorial & !mantenerCategoria & !mantenerEstado){
+        if (!mantenerAutor & !mantenerEditorial & !mantenerCategoria & !mantenerEstado & !mantenerTitulo) {
             btnIdiomaSelected();
             panel3Visible(true);
             iconoIdioma.setVisible(true);
@@ -1136,7 +1190,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnIdiomaMouseEntered
 
     private void btnIdiomaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIdiomaMouseExited
-        if(!mantenerAutor & !mantenerCategoria & !mantenerEditorial & !mantenerIdioma & !mantenerEstado){
+        if (!mantenerAutor & !mantenerCategoria & !mantenerEditorial & !mantenerIdioma & !mantenerEstado & !mantenerTitulo) {
             btnIdiomaDefault();
             panel3Visible(false);
             iconoIdioma.setVisible(false);
@@ -1144,7 +1198,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnIdiomaMouseExited
 
     private void btnEstadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstadoMouseEntered
-        if(!mantenerAutor & !mantenerEditorial & !mantenerCategoria & ! mantenerIdioma){
+        if (!mantenerAutor & !mantenerEditorial & !mantenerCategoria & !mantenerIdioma & !mantenerTitulo) {
             btnEstadoSelected();
             panel3Visible(true);
             iconoEstado.setVisible(true);
@@ -1152,7 +1206,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEstadoMouseEntered
 
     private void btnEstadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstadoMouseExited
-        if(!mantenerAutor & !mantenerCategoria & !mantenerEditorial & !mantenerIdioma & !mantenerEstado){
+        if (!mantenerAutor & !mantenerCategoria & !mantenerEditorial & !mantenerIdioma & !mantenerEstado & !mantenerTitulo) {
             btnEstadoDefault();
             panel3Visible(false);
             iconoEstado.setVisible(false);
@@ -1160,136 +1214,152 @@ public class MenuPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEstadoMouseExited
 
     private void btnAutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAutorMouseClicked
-        if(!mantenerAutor){
-            
+        if (!mantenerAutor) {
+
+            mantenerTitulo = false;
+            btnTituloDefault();
+            iconoTitulo.setVisible(false);
+            selectorTitulo.setVisible(false);
+
             mantenerEditorial = false;
             btnEditorialDefault();
             iconoEditorial.setVisible(false);
             selectorEditorial.setVisible(false);
-            
+
             mantenerCategoria = false;
             btnCategoriaDefault();
             iconoCategoria.setVisible(false);
             selectorCategoria.setVisible(false);
-            
+
             mantenerIdioma = false;
             btnIdiomaDefault();
             iconoIdioma.setVisible(false);
             selectorIdioma.setVisible(false);
-            
+
             mantenerEstado = false;
             btnEstadoDefault();
             iconoEstado.setVisible(false);
             selectorEstado.setVisible(false);
-            
+
             mantenerAutor = true;
             btnAutorSelected();
             selectorAutor.setVisible(true);
             iconoAutor.setVisible(true);
-        }
-        else{
+        } else {
             mantenerAutor = false;
             selectorAutor.setVisible(false);
         }
     }//GEN-LAST:event_btnAutorMouseClicked
 
     private void btnCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoriaMouseClicked
-        if(!mantenerCategoria){
-            
+        if (!mantenerCategoria) {
+
+            mantenerTitulo = false;
+            btnTituloDefault();
+            iconoTitulo.setVisible(false);
+            selectorTitulo.setVisible(false);
+
             mantenerAutor = false;
             btnAutorDefault();
             iconoAutor.setVisible(false);
             selectorAutor.setVisible(false);
-            
+
             mantenerEditorial = false;
             btnEditorialDefault();
             iconoEditorial.setVisible(false);
             selectorEditorial.setVisible(false);
-            
+
             mantenerIdioma = false;
             btnIdiomaDefault();
             iconoIdioma.setVisible(false);
             selectorIdioma.setVisible(false);
-            
+
             mantenerEstado = false;
             btnEstadoDefault();
             iconoEstado.setVisible(false);
             selectorEstado.setVisible(false);
-            
+
             mantenerCategoria = true;
             btnCategoriaSelected();
             selectorCategoria.setVisible(true);
             iconoCategoria.setVisible(true);
-        }
-        else{
+        } else {
             mantenerCategoria = false;
             selectorCategoria.setVisible(false);
         }
     }//GEN-LAST:event_btnCategoriaMouseClicked
 
     private void btnIdiomaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIdiomaMouseClicked
-       if(!mantenerIdioma){
-           
-           mantenerAutor = false;
-           btnAutorDefault();
-           iconoAutor.setVisible(false);
-           selectorAutor.setVisible(false);
-           
-           mantenerEditorial = false;
-           btnEditorialDefault();
-           iconoEditorial.setVisible(false);
-           selectorEditorial.setVisible(false);
-           
-           mantenerCategoria = false;
-           btnCategoriaDefault();
-           iconoCategoria.setVisible(false);
-           selectorCategoria.setVisible(false);
-           
-           mantenerEstado = false;
-           btnEstadoDefault();
-           iconoEstado.setVisible(false);
-           selectorEstado.setVisible(false);
-           
-           mantenerIdioma = true;
-           btnIdiomaSelected();
-           selectorIdioma.setVisible(true);
-           iconoIdioma.setVisible(true);
-       }
-       else{
-           mantenerIdioma = false;
-           selectorIdioma.setVisible(false);
-       }
-    }//GEN-LAST:event_btnIdiomaMouseClicked
+        if (!mantenerIdioma) {
 
-    private void btnEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstadoMouseClicked
-        if(!mantenerEstado){
-            
+            mantenerTitulo = false;
+            btnTituloDefault();
+            iconoTitulo.setVisible(false);
+            selectorTitulo.setVisible(false);
+
             mantenerAutor = false;
             btnAutorDefault();
             iconoAutor.setVisible(false);
             selectorAutor.setVisible(false);
-            
+
             mantenerEditorial = false;
             btnEditorialDefault();
             iconoEditorial.setVisible(false);
             selectorEditorial.setVisible(false);
-            
+
             mantenerCategoria = false;
             btnCategoriaDefault();
             iconoCategoria.setVisible(false);
             selectorCategoria.setVisible(false);
-            
+
+            mantenerEstado = false;
+            btnEstadoDefault();
+            iconoEstado.setVisible(false);
+            selectorEstado.setVisible(false);
+
+            mantenerIdioma = true;
+            btnIdiomaSelected();
+            selectorIdioma.setVisible(true);
+            iconoIdioma.setVisible(true);
+        } else {
+            mantenerIdioma = false;
+            selectorIdioma.setVisible(false);
+        }
+    }//GEN-LAST:event_btnIdiomaMouseClicked
+
+    private void btnEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstadoMouseClicked
+        if (!mantenerEstado) {
+
+            mantenerTitulo = false;
+            btnTituloDefault();
+            iconoTitulo.setVisible(false);
+            selectorTitulo.setVisible(false);
+
+            mantenerAutor = false;
+            btnAutorDefault();
+            iconoAutor.setVisible(false);
+            selectorAutor.setVisible(false);
+
+            mantenerEditorial = false;
+            btnEditorialDefault();
+            iconoEditorial.setVisible(false);
+            selectorEditorial.setVisible(false);
+
+            mantenerCategoria = false;
+            btnCategoriaDefault();
+            iconoCategoria.setVisible(false);
+            selectorCategoria.setVisible(false);
+
             mantenerIdioma = false;
             btnIdiomaDefault();
             iconoIdioma.setVisible(false);
             selectorIdioma.setVisible(false);
-            
+
             mantenerEstado = true;
             btnEstadoSelected();
             selectorEstado.setVisible(true);
             iconoEstado.setVisible(true);
-        }
-        else{
+        } else {
             mantenerEstado = false;
             selectorEstado.setVisible(false);
         }
@@ -1316,53 +1386,61 @@ public class MenuPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnMostrarDetalleMouseExited
 
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
-        if(mantenerLibros){
+        if (mantenerLibros) {
             btnBuscarDefault();
             Principal.principal.BuscarLibro();
+        }
+        if(mantenerDistribuidor){
+            btnBuscarDefault();
+            Principal.principal.buscarDistribuidor();
         }
     }//GEN-LAST:event_btnBuscarMouseClicked
 
     private void btnRegistrarDetalleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarDetalleMouseClicked
-        if(mantenerAutor){
+        if (mantenerAutor) {
             btnRegistrarDetalleDefault();
             Principal.principal.registrarAutor();
         }
-        if(mantenerEditorial){
+        if (mantenerEditorial) {
             btnRegistrarDetalleDefault();
             Principal.principal.registrarEditorial();
         }
-        if(mantenerCategoria){
+        if (mantenerCategoria) {
             btnRegistrarDetalleDefault();
             Principal.principal.registrarCategoria();
         }
-        if(mantenerIdioma){
+        if (mantenerIdioma) {
             btnRegistrarDetalleDefault();
             Principal.principal.registrarIdioma();
         }
-        if(mantenerEstado){
+        if (mantenerEstado) {
             btnRegistrarDetalleDefault();
             Principal.principal.registrarEstado();
+        }
+        if (mantenerTitulo) {
+            btnRegistrarDetalleDefault();
+            Principal.principal.registrarTitulo();
         }
     }//GEN-LAST:event_btnRegistrarDetalleMouseClicked
 
     private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
-        if(mantenerLibros){
+        if (mantenerLibros) {
             btnRegistrarDefault();
             Principal.principal.registrarLibro();
         }
-        if(mantenerDistribuidor){
+        if (mantenerDistribuidor) {
             btnRegistrarDefault();
             Principal.principal.registrarDistribuidor();
         }
-        if(mantenerFactura){
+        if (mantenerFactura) {
             btnRegistrarDefault();
             Principal.principal.registrarFactura();
         }
-        if(mantenerMetodoPago){
+        if (mantenerMetodoPago) {
             btnRegistrarDefault();
             Principal.principal.registrarMetodoPago();
         }
-        if(mantenerCompra){
+        if (mantenerCompra) {
             btnRegistrarDefault();
             Principal.principal.TipoTransaccion();
         }
@@ -1373,11 +1451,74 @@ public class MenuPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_wallpaperMouseClicked
 
     private void btnMostrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarMouseClicked
-        if(mantenerLibros){
+        if (mantenerLibros) {
             btnMostrarDefault();
             Principal.principal.MostratTodoLibros();
         }
+        if(mantenerDistribuidor){
+            btnMostrarDefault();
+            Principal.principal.MostrarTodosDistribuidor();
+        }
     }//GEN-LAST:event_btnMostrarMouseClicked
+
+    private void btnTituloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTituloMouseClicked
+
+        if (!mantenerTitulo) {
+
+            mantenerEstado = false;
+            btnEstadoDefault();
+            selectorEstado.setVisible(false);
+            iconoEstado.setVisible(false);
+
+            mantenerAutor = false;
+            btnAutorDefault();
+            iconoAutor.setVisible(false);
+            selectorAutor.setVisible(false);
+
+            mantenerEditorial = false;
+            btnEditorialDefault();
+            iconoEditorial.setVisible(false);
+            selectorEditorial.setVisible(false);
+
+            mantenerCategoria = false;
+            btnCategoriaDefault();
+            iconoCategoria.setVisible(false);
+            selectorCategoria.setVisible(false);
+
+            mantenerIdioma = false;
+            btnIdiomaDefault();
+            iconoIdioma.setVisible(false);
+            selectorIdioma.setVisible(false);
+            
+            mantenerTitulo = true;
+            btnTituloSelected();
+            iconoTitulo.setVisible(true);
+            selectorTitulo.setVisible(true);
+
+        } else {
+            mantenerTitulo = false;
+            selectorTitulo.setVisible(false);
+        }
+
+    }//GEN-LAST:event_btnTituloMouseClicked
+
+    private void btnTituloMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTituloMouseEntered
+
+        if (!mantenerAutor & !mantenerEditorial & !mantenerCategoria & !mantenerIdioma & !mantenerEstado) {
+            btnTituloSelected();
+            panel3Visible(true);
+            iconoTitulo.setVisible(true);
+        }
+    }//GEN-LAST:event_btnTituloMouseEntered
+
+    private void btnTituloMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTituloMouseExited
+
+        if (!mantenerAutor & !mantenerCategoria & !mantenerEditorial & !mantenerIdioma & !mantenerEstado & !mantenerTitulo) {
+            btnTituloDefault();
+            panel3Visible(false);
+            iconoTitulo.setVisible(false);
+        }
+    }//GEN-LAST:event_btnTituloMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1398,6 +1539,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
     private javax.swing.JLabel btnMostrarDetalle;
     private javax.swing.JLabel btnRegistrar;
     private javax.swing.JLabel btnRegistrarDetalle;
+    private javax.swing.JLabel btnTitulo;
     private javax.swing.JLabel contenedor3;
     private javax.swing.JLabel contenedorPrincipal;
     private javax.swing.JLabel contenedorSecundario;
@@ -1412,6 +1554,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
     private javax.swing.JLabel iconoIdioma;
     private javax.swing.JLabel iconoLibro;
     private javax.swing.JLabel iconoMetodoPago;
+    private javax.swing.JLabel iconoTitulo;
     private javax.swing.JLabel selectorAutor;
     private javax.swing.JLabel selectorCategoria;
     private javax.swing.JLabel selectorCompra;
@@ -1423,6 +1566,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
     private javax.swing.JLabel selectorIdioma;
     private javax.swing.JLabel selectorLibros;
     private javax.swing.JLabel selectorMetodoPago;
+    private javax.swing.JLabel selectorTitulo;
     private javax.swing.JLabel wallpaper;
     // End of variables declaration//GEN-END:variables
 }
